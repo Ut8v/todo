@@ -1,6 +1,9 @@
 const express = require('express');
 const path = require("path");
 const bcrypt = require('bcrypt');
+require('dotenv').config();
+const collection = require('./dbconnection');
+console.log(process.env.DB_Username);
 
 const app= express();
 //use json
@@ -16,6 +19,15 @@ app.get('/',(req,res)=>{
 
 app.get('/signup',(req,res)=>{
     res.sendFile(path.join(__dirname, '..', 'Frontend', 'signup.html'));
+})
+
+app.post('/signin',(req,res)=>{
+    const signinData ={
+        username:req.body.username,
+        password:req.body.password
+    }
+
+
 })
 
 app.listen(3000, ()=>{
