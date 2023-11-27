@@ -6,24 +6,33 @@ mongoose.connect(`mongodb+srv://${process.env.DB_Username}:${process.env.DB_Pass
     console.log('Connected successfully');
 });
 
-//create a schema
+//create a schema for users
 
 const userSchema = new mongoose.Schema({
     name: {
-        type:String,
+        type:Object,
         required:true
     },
     password: {
         type:String,
         required:true
-    }
+    },
+    todo: [{ 
+        type:String  
+    }]
 
+    
 })
+
+
 
 //model
 
 const collection = new mongoose.model('Users', userSchema);
 
+//const todoCollection = new mongoose.model('')
+
 module.exports= collection;
+//module.exports
 
 
