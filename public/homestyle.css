@@ -1,0 +1,73 @@
+body{
+    background-color: gray;
+}
+.home-main {
+    max-width: 600px; 
+    margin: 0 auto; 
+}
+
+.maindiv {
+    margin-bottom: 20px;
+}
+
+#createtodo {
+    padding: 8px;
+    margin-right: 10px;
+    width: 60%; 
+}
+
+#create-btn {
+    padding: 8px 12px;
+    cursor: pointer;
+    background-color: #28a745; 
+    color: #fff; 
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+#create-btn:hover {
+    background-color: #218838; 
+}
+
+.todo-div {
+    background-color: #f8f9fa; 
+    padding: 20px;
+    border-radius: 8px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+span {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.delete-btn {
+    background-color: #dc3545; 
+    color: #fff; 
+    padding: 3px 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 12px;
+}
+
+.delete-btn:hover {
+    background-color: #c82333; 
+}
+
+p{
+    font-size: 2em;
+    color: red;
+}

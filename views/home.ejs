@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="homestyle.css">
+    <title>Document</title>
+</head>
+<body>
+    <main class="home-main">
+        <div class="maindiv">
+        <h3>To-do List</h3>
+            <input type="text" name="info" id="createtodo" placeholder="Add more todos-" required="true">
+            <input type="submit" value="Add To-do" id="create-btn">
+        </div>
+       <div class="todo-div">
+        <h1>Welcome, <%= user.name %>!</h1>
+        <p>Your todos:</p>
+        <ul>
+            <% userTodo.todo.forEach(todo => { %>
+                <li>
+                    <input type="hidden" name="todo" id="todo"  value="<%= todo %>">
+                    <span><%= todo %></span>
+                    <input type="submit" value="Delete" class="delete-btn" id="delete-btn">
+                </li>
+            <% }); %>
+        </ul>
+       </div>
+    </main>
+     <script src="index.js"></script>
+</body>
+</html>

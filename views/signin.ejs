@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <title>Sign in</title>
+</head>
+<body>
+    <main>
+        <h1>To-do List</h1>
+        <div class="form-container">
+           <div class="form">
+              <form action="/signin" method="post">
+                  <label for="Username">Username</label>
+                  <input type="text" name="username" id="username" required="true" placeholder="Username">
+                  <label for="Password">Password</label>
+                  <input type="password" name="password" id="password" required="true" placeholder="Password">
+                  <input type="submit" value="Sign In">
+                  <h3>New user? <a href="/signup">Sign Up</a></h3>
+              </form>
+           </div>
+        </div>
+    </main>
+    
+</body>
+</html>
