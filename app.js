@@ -7,8 +7,12 @@ const collection = require('./dbconnection');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 //console.log(process.env.DB_Username);
+//const RedisStore = require('connect-redis')(session);
+const redis = require('redis');
+
 
 const app= express();
+//const redisClient = redis.createClient();
 //use json
 //app.use(express.json());
 //clear
@@ -41,7 +45,7 @@ app.get('/signup',(req,res)=>{
 
 //app.get('/')
 //sign in
-app.post('https://utshavsbagpacktodo.onrender.com/signin',async (req,res)=>{
+app.post('/signin',async (req,res)=>{
     
     //check username 
     //compare password
@@ -180,7 +184,7 @@ app.post('/delete',async (req,res)=>{
     }
 })
 
-app.get('https://utshavsbagpacktodo.onrender.com/home', (req,res)=>{
+app.get('/home', (req,res)=>{
     res.render('home',{ user: req.session.user, userTodo: req.session.userTodo});
 })
 
