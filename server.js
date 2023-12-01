@@ -11,6 +11,7 @@ const session = require('express-session');
 const app= express();
 //use json
 //app.use(express.json());
+//clear
 
 app.set('view engine', 'ejs');
 
