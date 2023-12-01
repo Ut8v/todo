@@ -41,7 +41,7 @@ app.get('/signup',(req,res)=>{
 
 //app.get('/')
 //sign in
-app.post('/signin',async (req,res)=>{
+app.post('https://utshavsbagpacktodo.onrender.com/signin',async (req,res)=>{
     
     //check username 
     //compare password
@@ -180,7 +180,7 @@ app.post('/delete',async (req,res)=>{
     }
 })
 
-app.get('/home', (req,res)=>{
+app.get('https://utshavsbagpacktodo.onrender.com/home', (req,res)=>{
     res.render('home',{ user: req.session.user, userTodo: req.session.userTodo});
 })
 
