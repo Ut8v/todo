@@ -54,11 +54,11 @@ try{
     const check = await collection.findOne({name:req.body.username});
 
     if(!check){
-     return res.send('User Not Found');
+    return res.render('usernotfound');
     }
 
     const compare = await bcrypt.compare(req.body.password, check.password);
-    console.log(compare);
+    //console.log(compare);
 
     if(compare){
         req.session.user = {name:check.name};
@@ -66,13 +66,13 @@ try{
         //console.log(req.session.user);
       //return res.sendFile(path.join(__dirname,'..','Frontend','home.html'));
       //res.render('home',{ user: req.session.user, userTodo: req.session.userTodo });
-      res.redirect('home');
+        res.redirect('home');
     }
     else{
         return res.send('Incorrect password')
     }
 } catch {
-  return  res.send('wrong details')
+    return  res.send('wrong details')
 }
 
 })
@@ -90,7 +90,7 @@ try{
     const userExists = await collection.findOne({name: signUpData.name});
 
     if(userExists){
-      return  res.send('user already exists, please sign in');
+    return  res.send('user already exists, please sign in <a href="/signin">Sign In</a>');
     }
     else 
     { 
@@ -99,7 +99,7 @@ try{
         const hashedPassword = await bcrypt.hash(signUpData.password, saltRounds);
         signUpData.password = hashedPassword;
         const addUser = await collection.insertMany(signUpData);
-        console.log(addUser);
+        //console.log(addUser);
        return res.redirect('signin');
     }
 }catch{
@@ -170,8 +170,8 @@ app.post('/delete',async (req,res)=>{
         const getUpdatedTodo = await collection.findOne({name: userName});
          req.session.userTodo = {todo:getUpdatedTodo.todo};
          res.render('home',{ user: req.session.user, userTodo: req.session.userTodo});
-         console.log(req.session.userTodo, 'Updated todo');
-          console.log('deleted');
+         //console.log(req.session.userTodo, 'Updated todo');
+          //console.log('deleted');
            
             } else {
            //res.status(404).send("Todo not found or already deleted");
@@ -188,6 +188,13 @@ app.get('/home', (req,res)=>{
     res.render('home',{ user: req.session.user, userTodo: req.session.userTodo});
 })
 
+app.get('/signin', (req,res)=>{
+    res.render('signin');
+})
+
+app.post('/logout',(req,res)=>{
+    res.render('signin');
+})
 
 //
 app.listen(3000, ()=>{

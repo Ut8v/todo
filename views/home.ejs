@@ -15,6 +15,9 @@
         </div>
        <div class="todo-div">
         <h1>Welcome, <%= user.name %>!</h1>
+        <form action="/logout" method="post">
+            <input type="submit" value="logout" id="logout-btn">
+        </form>
         <p>Your todos:</p>
         <ul>
             <% userTodo.todo.forEach(todo => { %>
