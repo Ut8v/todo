@@ -99,8 +99,27 @@ try{
         const hashedPassword = await bcrypt.hash(signUpData.password, saltRounds);
         signUpData.password = hashedPassword;
         const addUser = await collection.insertMany(signUpData);
-        //console.log(addUser);
-       return res.redirect('signin');
+        //now check if user has been created, if yes sign in
+
+        const check = await collection.findOne({name:req.body.username});
+        if(!check){
+            return res.render('usernotfound');
+            }
+        
+            const compare = await bcrypt.compare(req.body.password, check.password);
+            //console.log(compare);
+        
+            if(compare){
+                req.session.user = {name:check.name};
+                req.session.userTodo = {todo:check.todo};
+                //console.log(req.session.user);
+              //return res.sendFile(path.join(__dirname,'..','Frontend','home.html'));
+              //res.render('home',{ user: req.session.user, userTodo: req.session.userTodo });
+                res.redirect('home');
+            }
+            else{
+                return res.send('Incorrect password')
+            }
     }
 }catch{
   return res.send('Something went wrong')
