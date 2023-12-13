@@ -69,6 +69,8 @@ deleteBtn.addEventListener('click', deleteTodo);
 
 
 
+
+
 function reload(){
    window.location.reload();
     console.log('reloaded');
