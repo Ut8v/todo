@@ -8,7 +8,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 //console.log(process.env.DB_Username);
 //const RedisStore = require('connect-redis')(session);
-const redis = require('redis');
+//const redis = require('redis');
 
 
 const app= express();
@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname,'public')));
 app.use(cookieParser());
 
 app.use(session({
-    secret:'secret-key',
+    secret:process.env.SECRETKEY,
     resave:false,
     saveUninitialized:false
 }));
@@ -122,22 +122,19 @@ try{
             }
     }
 }catch{
-  return res.send('Something went wrong')
+    return res.send('Something went wrong')
 
 }
 
 })
 
 //to create to do's
-
-
-
 app.post('/create', async (req,res)=>{
 try {
     const list = {
         // req.session.user = {name:check.name}; 
-         name: req.session.user.name,
-         todo: req.body.todo,
+        name: req.session.user.name,
+        todo: req.body.todo,
     }
 
     console.log(list);
@@ -175,31 +172,26 @@ try {
 
 app.post('/delete',async (req,res)=>{
     try{
-         const userName= req.session.user.name;
-         const todo= req.body.todo;
+        const userName= req.session.user.name;
+        const todo= req.body.todo;
 
-          console.log(todo);
+        //console.log(todo);
         
-       const removeTodo = await collection.updateOne(
+    const removeTodo = await collection.updateOne(
         {name:userName},
         { $pull:{todo:todo} }
-       )
-       if (removeTodo.modifiedCount > 0) {
-
+    )
+    if (removeTodo.modifiedCount > 0) {
         const getUpdatedTodo = await collection.findOne({name: userName});
-         req.session.userTodo = {todo:getUpdatedTodo.todo};
-         res.render('home',{ user: req.session.user, userTodo: req.session.userTodo});
+        req.session.userTodo = {todo:getUpdatedTodo.todo};
+        res.render('home',{ user: req.session.user, userTodo: req.session.userTodo});
          //console.log(req.session.userTodo, 'Updated todo');
           //console.log('deleted');
-           
-            } else {
-           //res.status(404).send("Todo not found or already deleted");
-        console.log('problem');
-    }
-
+        
+    } 
 }catch(err){
-        console.log(err);
-       res.send("Something went wrong");
+    //console.log(err);
+    res.send("Something went wrong");
     }
 })
 

@@ -1,9 +1,6 @@
 
-
 //const deleteBtn = document.getElementById('delete-btn');
 const createBtn = document.getElementById('create-btn');
-
-
 async function createTodo(){
 try{
     const todo = document.getElementById('createtodo').value;
@@ -27,18 +24,8 @@ else{
     console.log(err);
 }
 }
-createBtn.addEventListener('click', createTodo);
 
-
-
-
-
-
-
-
-
-
-
+createBtn.addEventListener('click', createTodo); //event listener to create todo
 
 const deleteBtn = document.getElementById('delete-btn');
 console.log(deleteBtn);
@@ -55,25 +42,19 @@ async function deleteTodo() {
     })
     });
 
-
     if (delRes.ok) {
-         reload();
+        reload();
 
-    } else {
-        }
+    } 
     }catch(err){
+        console.log(err);
     }
 }
-
-deleteBtn.addEventListener('click', deleteTodo);
-
-
-
-
-
+deleteBtn.addEventListener('click', deleteTodo); //event listener to delete todo
+//to reload
 function reload(){
-   window.location.reload();
-    console.log('reloaded');
+    window.location.reload();
+   //console.log('reloaded');
 }
 
 
